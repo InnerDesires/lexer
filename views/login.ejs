@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
+    <link href="./stylesheets/main.css" rel="stylesheet" />
+    <link href="./stylesheets/login.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/87aaf69dbe.js" crossorigin="anonymous"></script>
+    <title>Авторизація</title>
+</head>
+
+<body>
+    <div id="mainContainer">
+        <div class="imageContainer">
+            <img class="login-image" src="images/login.jpeg" alt="" srcset="">
+        </div>
+
+        <div class="formHolder">
+            <div class="aligner">
+                <div class="welcomeText">
+                    <span class="secondary">З поверненням!</span>
+                    <br>
+                    <span class="primary">Авторизуйтесь у вашому акаунті</span>
+                </div>
+                <div class="authForm">
+                    <form id="mainLogin" action="login" method="POST">
+                        <div class="inputGroup">
+                            <label for="email">Електронна пошта</label>
+                            <input type="email" name="email" id="email">
+                        </div>
+                        <div class="inputGroup">
+                            <label for="pass">Пароль</label>
+                            <input type="password" name="pass" id="pass">
+                        </div>
+                        <input type="submit" value="Авторизуватись">
+                    </form>
+                    <div class="notices">
+                        <p class="notice">Для отримання або відновлення даних авторизації зверніться до адміністрації факультету:</p>
+                        <div class="buttons">
+                            <a href="https://t.me/tef_kpibot"><button class="contact"><i class="fab fa-telegram-plane"></i></button></a>
+                            <a href="mailto:kafedra.apeps.kpi@gmail.com"><button class="contact"><i class="fas fa-envelope"></i></button></a>
+                            <a href="http://apeps.kpi.ua/contacts"><button class="contact"><i class="fas fa-globe"></i></button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>

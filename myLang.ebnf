@@ -1,0 +1,28 @@
+Program = { Statement }.
+Statement = { Assign | For | If | printStatement | scanStatement }.
+Assign = Ident "=" Expression.
+Expression = ( Operand { Operator Operand } ).
+Operator = "+" | "-" | "*" | "/" | "^" | "||" | "&&"| ">"| "<"| "==".
+Operand = OperandSimple | OperandWithUnary.
+OperandWithUnary = "-" OperandSimple.
+OperandSimple = Ident | Number | "("Expression")".
+
+Ident = (Letter | SpecialSymbol) { Letter | Digit | SpecialSymbol }.
+
+Number = RealNumber | IntegerNumber.
+RealNumber = IntegerNumber "." [{ Digit }].
+IntegerNumber = "0" | ( ["-"] Digit { Digit }).
+NotZeroDigit = "1"|"2"|"3"|"4"|"5"|"6"|"7"|"8"|"9".
+Digit = "0" | NotZeroDigit.
+
+Letter = "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" |  "v" | "w" | "x" | "y" | "z" | "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I" | "J" | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U" |  "V" | "W" | "X" | "Y" | "X".
+
+SpecialSymbol = "$" | "_".
+
+For = "for" Assign "to" Expression "by" Operand "while" Expression { Statement } "rof".
+If = "if" Expression  "then" { Statement }  "fi".
+printStatement = "print(" Expression ")".
+scanStatement = "scan(" Expression ")".
+
+
+

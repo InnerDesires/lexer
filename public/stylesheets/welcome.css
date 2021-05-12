@@ -1,0 +1,127 @@
+body {
+    background-image: url('/images/factory.jpg');
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+#mainContainer {
+    display: flex;
+    flex-direction: column;
+    background: rgb(255, 255, 255, 0.75);
+    backdrop-filter: blur(5px);
+    background-size: cover;
+    border-radius: 20px;
+    padding: 50px;
+    margin: 50px;
+}
+
+div.welcomeText {
+    display: flex;
+    flex-direction: column;
+}
+
+div.welcomeText>p {
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+div.welcomeText>p.primary {
+    font-size: 2em;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+div.welcomeText>p.secondary {
+    font-size: 0.8em;
+    color: rgba(61, 61, 61, 1);
+}
+
+div.projects {
+    display: flex;
+    flex-direction: row;
+}
+
+div.projectContainer {
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    padding: 30px 30px 10px 30px;
+    border-radius: 10px;
+    flex: 1 1 0px;
+}
+
+.grammar {
+    background: linear-gradient(0deg, rgba(255, 255, 255, 1) 40%, rgba(255, 255, 255, 0.4) 100%), url('/images/grammar.jpg');
+}
+
+.lexer {
+    background: linear-gradient(0deg, rgba(255, 255, 255, 1) 40%, rgba(255, 255, 255, 0.4) 100%), url('/images/lexer.png');
+}
+
+div.projectContainer>p {
+    font-size: 1.2em;
+    font-weight: 600;
+    margin: 0;
+    margin-bottom: 15px;
+}
+
+div.projectList {
+    display: flex;
+    padding: 15px 15px 5px 15px;
+    flex-direction: column;
+    border-radius: 6px;
+    border: 2px, solid, black;
+}
+
+.projectEntry {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.projectEntry span {
+    margin-right: 15px;
+}
+
+.projectEntry button {
+    font-weight: 800;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.541);
+    border-radius: 5px;
+    border: 2px solid black;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.projectEntry button:hover {
+    border-color: rgb(71, 252, 191);
+}
+
+.addButton {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+div.projectEntry.addNew {
+    margin-bottom: 0;
+}
+
+@media screen and (max-width: 800px) {
+    div.projects {
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    div.project {
+        flex-direction: column;
+    }
+}

@@ -1,0 +1,16 @@
+print(((b) + -c))
+b = 2 
+
+scan(c)
+if a || b then then
+    c = a
+    if a then 
+        a = b
+    fi
+    b = c
+fi
+
+for i = 1 to 10 by 1 while i + 10 
+    z = 10
+    zn = z + 1
+rof

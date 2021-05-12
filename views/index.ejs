@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <script src="lib/codemirror.js"></script>
+    <link rel="stylesheet" href="lib/codemirror.css">
+</head>
+
+<body>
+    <div class="main">
+        <div class="row">
+            <div class="col-50p">
+                <textarea name="" id="source" class="sourceCodeText"></textarea>
+            </div>
+            <div class="col-50p">
+                <textarea name="" id="translation" class="sourceCodeText"></textarea>
+            </div>
+        </div>
+        <div class="row">
+            <button id="updateDiagram">Update</button>
+        </div>
+        <div class="row">
+            <div class="col-50p">
+
+                <div id="gojs" style="height: 500px;">
+
+                </div>
+            </div>
+            <div class="col-50p">
+            </div>
+        </div>
+    </div>
+
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://unpkg.com/gojs/release/go-debug.js"></script>
+<script src="/javascripts/diagram.js"></script>
+<script src="/javascripts/interpreter.js"></script>
+
+</html>
