@@ -1,0 +1,74 @@
+body {
+    width: 100%;
+}
+
+#mainContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#textareaHolder {
+    margin: 0px 40px;
+}
+
+#automaton {
+    margin: 20px 40px 5px 40px;
+}
+
+#automatonSwitcher {
+    margin: 10px;
+}
+
+#automatonView {}
+
+.container {
+    padding: 0px 25px 15px 25px;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+.container:first-child {
+    margin-right: 15px;
+}
+
+#automaton {
+    display: flex;
+    flex-direction: row;
+}
+
+#automaton>* {
+    width: 100%;
+}
+
+#studentCode {}
+
+#chartContainer {
+    height: 500px;
+}
+
+#automatonSwitcher {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#automatonSwitcher>div:first-child {
+    margin-right: 10px;
+}
+
+#nav {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 15px 40px;
+    display: flex;
+    justify-content: flex-start;
+    font-weight: 800;
+    box-shadow: 4px 0px 8px 0px rgba(34, 60, 80, 0.2);
+    margin-bottom: 5px;
+}
+
+#nav>* {
+    margin: 0px 10px 0px 0px;
+    cursor: pointer;
+}

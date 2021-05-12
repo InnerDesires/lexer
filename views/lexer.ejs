@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
+    <script src="lib/codemirror.js"></script>
+    <script src="lib/mode/javascript.js"></script>
+    <link rel="stylesheet" href="lib/codemirror.css">
+    <link rel="stylesheet" href="lib/idea.css">
+    <link href="./stylesheets/main.css" rel="stylesheet" />
+    <link href="./stylesheets/lexer.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/87aaf69dbe.js" crossorigin="anonymous"></script>
+    <script src="/javascripts/state_diagram.js"></script>
+    <script src="/javascripts/lexer.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <title>Мій перший лексичний аналізатор</title>
+</head>
+
+<body>
+    <div id="nav">
+        <span id="save"> Зберегти </span>
+        <span id="run" onclick="runCode()"> Виконати </span>
+        <span id="projects"> Проекти </span>
+    </div>
+    <div id="mainContainer">
+        <div id="textareaHolder">
+            <textarea name="studentCode" id="studentCode" rows=100></textarea>
+        </div>
+
+        <div id="automaton">
+            <div class="container">
+                <h1>Текстове подання</h1>
+                <span id="automatonView"></span>
+            </div>
+            <div class="container">
+                <h1>Графічна діаграма</h1>
+                <div id="chartContainer"></div>
+            </div>
+        </div>
+        <div id="automatonSwitcher">
+            <div>
+                <input checked="true" type="checkbox" name="viewSelection" id="text">
+                <label for="text"> Текст</label>
+            </div>
+            <div>
+                <input checked="true" type="checkbox" name="viewSelection" id="diagram">
+                <label for="digram"> Діаграма</label>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://unpkg.com/gojs/release/go-debug.js"></script>
+
+</html>

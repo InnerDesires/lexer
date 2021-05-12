@@ -21,6 +21,10 @@ router.get('/welcome', (req, res) => {
     res.render('welcome');
 })
 
+router.get('/lexer', (req, res) => {
+    res.render('lexer');
+})
+
 router.post('/parse_input', (req, res, next) => {
     lang_proc.getSyntaxTree(req.body.source, (errors, syntaxTree) => {
         if (errors) {
