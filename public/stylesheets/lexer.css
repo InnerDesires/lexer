@@ -9,6 +9,16 @@ body {
 }
 
 #textareaHolder {
+    width: 100%;
+    display:flex;
+    flex-direction: row;
+}
+
+#textareaHolder > div {
+    width: 50%;
+}
+
+#textareaHolder {
     margin: 0px 40px;
 }
 
