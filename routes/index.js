@@ -1,15 +1,12 @@
 var express = require('express');
 var router = express.Router();
-let lang_proc = require('../lang_proc.js')
-let translator = require('../translator.js')
-const fs = require('fs');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', function (req, res, next) {
     res.render('index', { title: 'Express' });
 });
 
-router.get('/login', function(req, res, next) {
+router.get('/login', function (req, res, next) {
     res.render('login', { title: 'Express' });
 });
 
@@ -25,6 +22,14 @@ router.get('/lexer', (req, res) => {
     res.render('lexer');
 })
 
+
+router.post('/lexer/:lexerid/execute', (req, res) => {
+
+});
+
+/* let lang_proc = require('../own_modules/lexer/lang_proc.js')
+let translator = require('../own_modules/lexer/translator.js')
+const fs = require('fs'); 
 router.post('/parse_input', (req, res, next) => {
     lang_proc.getSyntaxTree(req.body.source, (errors, syntaxTree) => {
         if (errors) {
@@ -33,6 +38,7 @@ router.post('/parse_input', (req, res, next) => {
             return res.json({ tree: syntaxTree, RPN: translator.translate(syntaxTree) });
         }
     });
-})
+}) 
+ */
 
 module.exports = router;

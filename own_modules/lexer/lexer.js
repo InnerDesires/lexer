@@ -5,8 +5,10 @@ const createToken = chevrotain.createToken
 
 
 const Identifier = createToken({ name: "Identifier", pattern: /([a-zA-Z]|_|\$)(\w*\d*_*\$*)*/ })
+
 // We specify the "longer_alt" property to resolve keywords vs identifiers ambiguity.
 // See: https://github.com/SAP/chevrotain/blob/master/examples/lexer/keywords_vs_identifiers/keywords_vs_identifiers.js
+
 const WhiteSpace = createToken({
     name: "WhiteSpace",
     pattern: /\s+/,
