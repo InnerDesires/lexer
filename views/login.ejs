@@ -8,6 +8,10 @@
     <script src="https://kit.fontawesome.com/87aaf69dbe.js" crossorigin="anonymous"></script>
     <title>Авторизація</title>
 </head>
+<script type='text/javascript'>
+    var obj =<% -JSON.stringify(data) %>
+        console.log(obj)
+</script>
 
 <body>
     <div id="mainContainer">
@@ -29,17 +33,26 @@
                             <input type="email" name="email" id="email">
                         </div>
                         <div class="inputGroup">
-                            <label for="pass">Пароль</label>
-                            <input type="password" name="pass" id="pass">
+                            <label for="password">Пароль</label>
+                            <input type="password" name="password" id="password">
                         </div>
                         <input type="submit" value="Авторизуватись">
+                        <% if(error) { %>
+                            <p>
+                                <%= error %>
+                            </p>
+                            <% } %>
                     </form>
                     <div class="notices">
-                        <p class="notice">Для отримання або відновлення даних авторизації зверніться до адміністрації факультету:</p>
+                        <p class="notice">Для отримання або відновлення даних авторизації зверніться до адміністрації
+                            факультету:</p>
                         <div class="buttons">
-                            <a href="https://t.me/tef_kpibot"><button class="contact"><i class="fab fa-telegram-plane"></i></button></a>
-                            <a href="mailto:kafedra.apeps.kpi@gmail.com"><button class="contact"><i class="fas fa-envelope"></i></button></a>
-                            <a href="http://apeps.kpi.ua/contacts"><button class="contact"><i class="fas fa-globe"></i></button></a>
+                            <a href="https://t.me/tef_kpibot"><button class="contact"><i
+                                        class="fab fa-telegram-plane"></i></button></a>
+                            <a href="mailto:kafedra.apeps.kpi@gmail.com"><button class="contact"><i
+                                        class="fas fa-envelope"></i></button></a>
+                            <a href="http://apeps.kpi.ua/contacts"><button class="contact"><i
+                                        class="fas fa-globe"></i></button></a>
                         </div>
                     </div>
                 </div>

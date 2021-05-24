@@ -6,13 +6,16 @@
     "start": "nodemon ./bin/www"
   },
   "dependencies": {
+    "auth": "file:own_modules/auth",
     "chevrotain": "^6.5.0",
     "console.table": "^0.10.0",
     "cookie-parser": "~1.4.4",
+    "db": "file:own_modules/db",
     "debug": "~2.6.9",
     "ejs": "~2.6.1",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
+    "mongoose": "^5.12.10",
     "morgan": "~1.9.1",
     "safe-eval": "^0.4.1"
   }
