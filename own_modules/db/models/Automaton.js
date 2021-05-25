@@ -1,18 +1,18 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var projectSchema = new Schema({
+var automatonSchema = new Schema({
     _id: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         auto: true,
     },
     name: String,
-    code: String,
+    json: String,
     testCode: String,
-    automaton: { type: Schema.Types.ObjectId, ref: 'Automaton' },
-    author: { type: Schema.Types.ObjectId, ref: 'User' },
+    textForm: String,
     created: { type: Date, default: Date.now },
+    author: { type: Schema.Types.ObjectId, ref: 'User' },
 });
 
-module.exports = mongoose.model('Project', projectSchema);
+module.exports = mongoose.model('Automaton', automatonSchema);

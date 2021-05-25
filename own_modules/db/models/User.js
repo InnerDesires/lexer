@@ -9,7 +9,6 @@ var validateEmail = function (email) {
 var userSchema = new Schema({
     _id: {
         type: mongoose.Schema.Types.ObjectId,
-        index: true,
         required: true,
         auto: true,
     },
@@ -26,7 +25,10 @@ var userSchema = new Schema({
     name: String,
     role: String,
     created: { type: Date, default: Date.now },
-
+    group: String,
+    projects: [
+        { type: Schema.Types.ObjectId, ref: 'Project' }
+    ]
 });
 
 module.exports = mongoose.model('User', userSchema);

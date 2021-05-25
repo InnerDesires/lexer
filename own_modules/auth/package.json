@@ -11,6 +11,7 @@
   "dependencies": {
     "crypto": "^1.0.1",
     "db": "file:../db",
+    "express-jwt": "^6.0.0",
     "jsonwebtoken": "^8.5.1"
   }
 }

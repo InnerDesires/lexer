@@ -6,56 +6,77 @@
     <link href="./stylesheets/main.css" rel="stylesheet" />
     <link href="./stylesheets/welcome.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/87aaf69dbe.js" crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
     <title>Головна</title>
 </head>
 
 <body>
     <div id="mainContainer">
         <div class="welcomeText">
-            <p class="primary">Вітаємо, <%= userData.name %>!</p>
+            
+            <div class="top">
+                <span class="primary">Вітаємо, <%= userData.name %>!</span>
+                <a href="/logout"><button>Вихід</button></a>
+            </div>
             <p class="secondary"> Тут відображені доступні дії</p>
         </div>
-
-        <div class="projects">
-            <div class="projectContainer grammar">
-                <p>Граматики</p>
-
-                <div class="projectList">
-                    <div class="projectEntry">
-                        <span class="projectName">Моя перша граматика</span>
-                        <button>Редагувати</button>
+        <% if(admin) { %>
+            <script src="./javascripts/admin.js"></script>
+            <div class="actions">
+                <div class="buttonsContainer">
+                    <div class="addButton">
+                        <button onclick="adminUtils.addUser()">Додати користувача</button>
                     </div>
-                    <div class="projectEntry">
-                        <span class="projectName">Моя друга граматика</span>
-                        <button>Редагувати</button>
+                    <div class="addButton">
+                        <button onclick="adminUtils.addAutomaton()">Додати граматику</button>
                     </div>
-                    <div class="projectEntry addNew">
-                        <div class="addButton">
-                            <button>Новий проект</button>
-                        </div>
+                    <div class="addButton">
+                        <a href="/users"><button>Перегляд списку студентів </button></a>
                     </div>
                 </div>
             </div>
-            <div class="projectContainer lexer">
-                <p>Лексичні аналізатори</p>
+            <% } %>
+                <div class="projects">
+                    <div class="projectContainer grammar">
+                        <p>Граматики</p>
 
-                <div class="projectList">
-                    <div class="projectEntry">
-                        <span class="projectName">Мій перший лексичний аналізатор</span>
-                        <a href="/lexer"><button>Редагувати</button></a>
+                        <div class="projectList">
+                            <div class="projectEntry">
+                                <span class="projectName">Моя перша граматика</span>
+                                <button>Редагувати</button>
+                            </div>
+                            <div class="projectEntry">
+                                <span class="projectName">Моя друга граматика</span>
+                                <button>Редагувати</button>
+                            </div>
+                            <div class="projectEntry addNew">
+                                <div class="addButton">
+                                    <button>Новий проект</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="projectEntry">
-                        <span class="projectName">Мій другий лексичний аналізатор</span>
-                        <button>Редагувати</button>
-                    </div>
-                    <div class="projectEntry addNew">
-                        <div class="addButton">
-                            <button>Новий проект</button>
+                    <div class="projectContainer lexer">
+                        <p>Лексичні аналізатори</p>
+
+                        <div class="projectList">
+                            <div class="projectEntry">
+                                <span class="projectName">Мій перший лексичний аналізатор</span>
+                                <a href="/lexer"><button>Редагувати</button></a>
+                            </div>
+                            <div class="projectEntry">
+                                <span class="projectName">Мій другий лексичний аналізатор</span>
+                                <button>Редагувати</button>
+                            </div>
+                            <div class="projectEntry addNew">
+                                <div class="addButton">
+                                    <button>Новий проект</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
 
     </div>
 </body>

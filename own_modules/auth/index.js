@@ -1,6 +1,20 @@
 const models = require('../db')
 const jwt = require('jsonwebtoken');
-const SECRET = "ADJFHNSKJVNS";
+const ejwt = require('express-jwt');
+
+function makeid(length) {
+    var result = [];
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for (var i = 0; i < length; i++) {
+        result.push(characters.charAt(Math.floor(Math.random() *
+            charactersLength)));
+    }
+    return result.join('');
+}
+
+const SECRET =  'HELLOFROMVIETNAM'//makeid(10);
+
 function signUp(userData) {
     return new Promise((resolve, reject) => {
         models.user.create(userData)
@@ -22,7 +36,7 @@ function login(loginData) {
         models.user.findOne({ email: loginData.email })
             .then(doc => {
                 if (!doc) {
-                    reject(new Error(`User not found or password is wrong1`));
+                    reject(new Error(`Невірно вказані електронна пошта або пароль`));
                 } else if (doc.password === loginData.password) {
                     resolve({
                         user: {
@@ -33,9 +47,12 @@ function login(loginData) {
                         token: generateJWT(doc)
                     });
                 } else {
-                    reject(new Error('User not found or password is wrong'))
+                    reject(new Error('Невірно вказані електронна пошта або пароль'))
                 }
 
+            })
+            .catch(err => {
+                reject(err)
             })
     })
 }
@@ -52,29 +69,44 @@ function generateJWT(user) {
     return jwt.sign({ data, }, signature, { expiresIn: expiration });
 }
 
-const getTokenFromHeader = (req) => {
-    if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
-        return req.headers.authorization.split(' ')[1];
-
+const getTokenFromCookie = (req, res, next) => {
+    if (req.cookies) {
+        console.log(req.cookies['jwt']);
+        return req.cookies['jwt'];
     }
 }
 
 module.exports = {
     signUp: signUp,
     login: login,
-    isAuth: a => { },
+    isAuth: ejwt(
+        {
+            secret: SECRET, // Тут должно быть то же самое, что использовалось при подписывании JWT
+
+            userProperty: 'token', // Здесь следующее промежуточное ПО сможет найти то, что было закодировано в services/auth:generateToken -> 'req.token'
+
+            getToken: getTokenFromCookie, // Функция для получения токена аутентификации из запроса
+
+            algorithms: ['HS256']
+        }
+    ),
     attachCurrentUser: (req, res, next) => {
-        const decodedTokenData = req.tokenData;
-        models.user.findOne({ _id: decodedTokenData._id })
+        const decodedTokenData = req.token;
+        console.log('Decoded token data');
+        console.log(decodedTokenData);
+        if (!decodedTokenData) {
+            return next();
+            throw new Error('decodedTokenData is undefined')
+        }
+        models.user.findOne({ _id: decodedTokenData.data._id })
             .then((userRecord) => {
-                req.currentUser = {
-                    _id: userRecord._id
-                };
+                req.currentUser = userRecord
                 if (!userRecord) {
                     return res.status(401).end('User not found')
                 } else {
                     return next();
                 }
+
             })
 
 

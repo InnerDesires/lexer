@@ -6,12 +6,9 @@
     <link href="./stylesheets/main.css" rel="stylesheet" />
     <link href="./stylesheets/login.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/87aaf69dbe.js" crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <title>Авторизація</title>
 </head>
-<script type='text/javascript'>
-    var obj =<% -JSON.stringify(data) %>
-        console.log(obj)
-</script>
 
 <body>
     <div id="mainContainer">
@@ -38,9 +35,26 @@
                         </div>
                         <input type="submit" value="Авторизуватись">
                         <% if(error) { %>
-                            <p>
-                                <%= error %>
-                            </p>
+                            <script>
+                                let err = <%-JSON.stringify(error.message || error || "Помилка") %>;
+                                const Toast = Swal.mixin({
+                                    toast: true,
+                                    position: 'top-end',
+                                    showConfirmButton: false,
+                                    timer: 5000,
+                                    timerProgressBar: true,
+                                    didOpen: (toast) => {
+                                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                    }
+                                })
+
+                                Toast.fire({
+                                    icon: 'error',
+                                    title: err
+                                })
+
+                            </script>
                             <% } %>
                     </form>
                     <div class="notices">

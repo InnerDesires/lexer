@@ -1,0 +1,43 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список студентів</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
+    <script src="https://unpkg.com/gridjs/dist/gridjs.production.min.js"></script>
+    <link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+    <link href="/stylesheets/main.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="main">
+        <div id="grid"></div>
+    </div>
+
+    <script>
+        new gridjs.Grid({
+            columns: ["Група", "ПІБ", "Пошта", 'Проекти'],
+            server: {
+                url: '/getUsers',
+                then: data => {
+                    return data.map(user => {
+                        let projects = user.projects.length === 0 ? 'Проекти відсутні' : user.projects;
+                        return [user.group || 'Група не вказана', user.name, user.email, projects]
+                    })
+                }
+            },
+            fixedHeader: true,
+            resizable: true,
+            sort: true,
+            style: {
+                table: {
+
+                }
+            }
+        }).render(document.getElementById("grid"));
+    </script>
+</body>
+
+</html>
