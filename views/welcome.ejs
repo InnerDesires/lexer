@@ -54,6 +54,12 @@
                                     <th>
                                         <span class="projectName">Назва</span>
                                     </th>
+                                    <th>
+                                        <span class="projectName">Дата створення</span>
+                                    </th>
+                                    <th>
+                                        <span class="projectName">Діаграма станів</span>
+                                    </th>
                                     <th class="last">
                                         <span class="projectName"></span>
                                     </th>
@@ -63,6 +69,16 @@
                                         <td>
                                             <span class="projectName">
                                                 <%= project.name %>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="projectName">
+                                                <%= project.date %>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="projectName">
+                                                <%= project.automaton.name %>
                                             </span>
                                         </td>
                                         <td class="blue last">
@@ -75,7 +91,7 @@
                             </table>
                         </div>
                     </div>
-                    <div class="projectContainer grammar">
+                    <div class="projectContainer lexer">
                         <div class="projectHeader">
                             <span>Діаграми станів</span>
                             <div class="projectEntry addNew">
@@ -92,29 +108,108 @@
                                         <span class="projectName">Назва</span>
                                     </th>
                                     <th>
-                                        <span class="projectName">Назва</span>
+                                        <span class="projectName">Дата створення</span>
                                     </th>
                                     <th>
-                                        <span class="projectName">Назва</span>
+                                        <span class="projectName">Автор</span>
                                     </th>
                                     <th class="last">
                                         <span class="projectName"></span>
                                     </th>
                                 </tr>
+                                <% automatons.forEach(automaton=> {%>
+                                    <tr>
+                                        <td>
+                                            <span class="projectName">
+                                                <%= automaton.name %>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="projectName">
+                                                <%= automaton.date %>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="projectName">
+                                                <%= automaton.author.name %>
+                                            </span>
+                                        </td>
+                                        <td class="blue last">
+                                            <a class="blue" href="/automaton/<%=automaton._id%>">
+                                                <button>Редагувати</button></a>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <% })%>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="projectContainer lexer">
+                        <div class="projectHeader">
+                            <span>Користувачі</span>
+                            <div class="projectEntry addNew">
+                                <div class="addButton green">
+                                    <button>Додати</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="projectList">
+                            <table>
                                 <tr>
-                                    <td>
-                                        <span class="projectName">Моя перша граматика</span>
-                                    </td>
-                                    <td>
-                                        <span class="projectName">Моя перша граматика</span>
-                                    </td>
-                                    <td>
-                                        <span class="projectName">Моя перша граматика</span>
-                                    </td>
-                                    <td class="blue last">
-                                        <button>Редагувати</button>
-                                    </td>
+                                    <th>
+                                        <span class="projectName">Група</span>
+                                    </th>
+                                    <th>
+                                        <span class="projectName">ПІБ</span>
+                                    </th>
+                                    <th>
+                                        <span class="projectName">Пошта</span>
+                                    </th>
+                                    <th>
+                                        <span class="projectName">Створено</span>
+                                    </th>
+                                    <th>
+                                        <span class="projectName">Роль</span>
+                                    </th>
+                                    <th class="last">
+                                        <span class="projectName"></span>
+                                    </th>
                                 </tr>
+                                <% users.forEach(user=> {%>
+                                    <tr>
+                                        <td>
+                                            <span class="projectName">
+                                                <%= user.group %>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="projectName">
+                                                <%= user.name %>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="projectName">
+                                                <%= user.email %>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="projectName">
+                                                <%= user.date %>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="projectName">
+                                                <%= user.role %>
+                                            </span>
+                                        </td>
+                                        <td class="blue last">
+                                            <a class="blue" href="/user/<%=user._id%>">
+                                                <button>Редагувати</button></a>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <% })%>
                             </table>
                         </div>
                     </div>

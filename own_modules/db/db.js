@@ -3,6 +3,8 @@ let config = require('../../config/dbconfig.js');
 let User = require('./models/User.js');
 let Project = require('./models/Project.js');
 let Automaton = require('./models/Automaton.js');
+const moment = require('moment');
+moment.locale('uk');
 
 mongoose.Promise = global.Promise;
 mongoose.connect(config.connectionString, { useNewUrlParser: true, useUnifiedTopology: true }, (err) => {
@@ -42,12 +44,12 @@ module.exports = {
         },
         find: function (filter) {
             return new Promise((resolve, reject) => {
-                User.find(filter || {}, { 'group': 1, 'name': 1, 'email': 1, 'projects': 1 }, ((err, users) => {
+                User.find(filter || {}, { group: 1, name: 1, email: 1, projects: 1, created: 1, role: 1 }, ((err, users) => {
                     if (err) {
                         console.log(err);
                         return reject(err);
                     }
-                    console.log(users);
+                    users.forEach(user => { user.date = moment(user.created).format('D.MM YYYY') })
                     resolve(users)
                 }))
             });
@@ -68,14 +70,16 @@ module.exports = {
         },
         find: function (filter) {
             return new Promise((resolve, reject) => {
-                Project.find(filter || {}, ((err, projects) => {
+                Project.find(filter || {}).populate('automaton').exec((err, projects) => {
                     if (err) {
                         console.log(err);
                         return reject(err);
                     }
-                    console.log(projects);
-                    resolve(projects)
-                }))
+                    projects.forEach(project => {
+                        project.date = moment(project.created).format('D.MM YYYY');
+                    })
+                    resolve(projects);
+                })
             });
         },
         create: function (projectData) {
@@ -106,13 +110,17 @@ module.exports = {
         },
         find: function (filter) {
             return new Promise((resolve, reject) => {
-                Automaton.find(filter || {}, ((err, automatons) => {
+                Automaton.find(filter || {}).populate('author').exec((err, automatons) => {
                     if (err) {
                         console.log(err);
                         return reject(err);
                     }
+
+                    automatons.forEach(automaton => {
+                        automaton.date = moment(automaton.created).format('D.MM YYYY');
+                    })
                     resolve(automatons)
-                }))
+                })
             });
         }
     }
