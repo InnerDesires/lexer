@@ -7,17 +7,17 @@
     <link href="./stylesheets/welcome.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/87aaf69dbe.js" crossorigin="anonymous"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-
+    <script src="./javascripts/welcome.js"></script>
     <title>Головна</title>
 </head>
 
 <body>
     <div id="mainContainer">
         <div class="welcomeText">
-            
+
             <div class="top">
                 <span class="primary">Вітаємо, <%= userData.name %>!</span>
-                <a href="/logout"><button>Вихід</button></a>
+                <a class="red" href="/logout"><button>Вихід</button></a>
             </div>
             <p class="secondary"> Тут відображені доступні дії</p>
         </div>
@@ -25,58 +25,102 @@
             <script src="./javascripts/admin.js"></script>
             <div class="actions">
                 <div class="buttonsContainer">
-                    <div class="addButton">
+                    <div class="addButton blue">
                         <button onclick="adminUtils.addUser()">Додати користувача</button>
                     </div>
-                    <div class="addButton">
-                        <button onclick="adminUtils.addAutomaton()">Додати граматику</button>
+                    <div class="addButton blue">
+                        <button onclick="adminUtils.addAutomaton()">Додати Діаграму станів</button>
                     </div>
                     <div class="addButton">
-                        <a href="/users"><button>Перегляд списку студентів </button></a>
+                        <a class="blue" href="/users"><button>Перегляд списку студентів </button></a>
                     </div>
                 </div>
             </div>
             <% } %>
                 <div class="projects">
-                    <div class="projectContainer grammar">
-                        <p>Граматики</p>
+                    <div class="projectContainer lexer">
+                        <div class="projectHeader">
+                            <span>Лексичні аналізатори</span>
+                            <div class="projectEntry addNew">
+                                <div class="addButton green">
+                                    <button onclick="welcomeUtils.createProject()">Новий проект</button>
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="projectList">
-                            <div class="projectEntry">
-                                <span class="projectName">Моя перша граматика</span>
-                                <button>Редагувати</button>
-                            </div>
-                            <div class="projectEntry">
-                                <span class="projectName">Моя друга граматика</span>
-                                <button>Редагувати</button>
-                            </div>
+                            <table>
+                                <tr>
+                                    <th>
+                                        <span class="projectName">Назва</span>
+                                    </th>
+                                    <th class="last">
+                                        <span class="projectName"></span>
+                                    </th>
+                                </tr>
+                                <% projects.forEach(project=> {%>
+                                    <tr>
+                                        <td>
+                                            <span class="projectName">
+                                                <%= project.name %>
+                                            </span>
+                                        </td>
+                                        <td class="blue last">
+                                            <a class="blue" href="/lexer/<%=project._id%>">
+                                                <button>Редагувати</button></a>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <% })%>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="projectContainer grammar">
+                        <div class="projectHeader">
+                            <span>Діаграми станів</span>
                             <div class="projectEntry addNew">
-                                <div class="addButton">
+                                <div class="addButton green">
                                     <button>Новий проект</button>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="projectContainer lexer">
-                        <p>Лексичні аналізатори</p>
 
                         <div class="projectList">
-                            <div class="projectEntry">
-                                <span class="projectName">Мій перший лексичний аналізатор</span>
-                                <a href="/lexer"><button>Редагувати</button></a>
-                            </div>
-                            <div class="projectEntry">
-                                <span class="projectName">Мій другий лексичний аналізатор</span>
-                                <button>Редагувати</button>
-                            </div>
-                            <div class="projectEntry addNew">
-                                <div class="addButton">
-                                    <button>Новий проект</button>
-                                </div>
-                            </div>
+                            <table>
+                                <tr>
+                                    <th>
+                                        <span class="projectName">Назва</span>
+                                    </th>
+                                    <th>
+                                        <span class="projectName">Назва</span>
+                                    </th>
+                                    <th>
+                                        <span class="projectName">Назва</span>
+                                    </th>
+                                    <th class="last">
+                                        <span class="projectName"></span>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="projectName">Моя перша граматика</span>
+                                    </td>
+                                    <td>
+                                        <span class="projectName">Моя перша граматика</span>
+                                    </td>
+                                    <td>
+                                        <span class="projectName">Моя перша граматика</span>
+                                    </td>
+                                    <td class="blue last">
+                                        <button>Редагувати</button>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
                 </div>
+
+
 
     </div>
 </body>

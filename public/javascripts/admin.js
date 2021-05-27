@@ -39,7 +39,6 @@ const adminUtils = {
                         return response.json()
                             .then(res => {
                                 if (res.error) {
-                                    console.log()
                                     throw new Error(res.error.name);
                                 } else {
                                     Swal.fire({
@@ -66,7 +65,6 @@ const adminUtils = {
     addAutomaton: function () {
         Swal.fire({
             title: 'Додавання Автомата',
-            icon: 'info',
             html:
                 `
                 <label for="my-input">Назва</label>

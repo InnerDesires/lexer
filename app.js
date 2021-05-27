@@ -29,7 +29,7 @@ app.use(function (req, res, next) {
 
 // error handler
 app.use(function (err, req, res, next) {
-  const JSONRequestsUrls = ['/createUser', '/createAutomaton', '/getUsers']
+  const JSONRequestsUrls = ['/createUser', '/createAutomaton', '/getUsers', '/getAutomatons']
   if (err.name === 'UnauthorizedError') {
     if (JSONRequestsUrls.includes(req.originalUrl)) {
       res.clearCookie('jwt');

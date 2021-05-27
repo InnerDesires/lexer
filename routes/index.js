@@ -41,11 +41,17 @@ router.post('/login', (req, res) => {
 })
 
 router.get('/welcome', isAuth, attachCurrentUser, (req, res) => {
-    let data = {
-        userData: { name: req.currentUser ? req.currentUser.name : "test" },
-        admin: req.currentUser ? (req.currentUser.role === 'admin' ? true : false) : false
-    }
-    res.render('welcome', data);
+    db.project.find({ author: req.currentUser._id })
+        .then(projects => {
+            let data = {
+                userData: { name: req.currentUser ? req.currentUser.name : "test" },
+                admin: req.currentUser ? (req.currentUser.role === 'admin' ? true : false) : false,
+                projects: projects
+            }
+            res.render('welcome', data);
+        })
+
+
 })
 
 router.get('/users', isAuth, attachCurrentUser, roleRequired('admin'), (req, res) => {
@@ -65,13 +71,52 @@ router.get('/getUsers', isAuth, attachCurrentUser, roleRequired('admin'), (req, 
 
 })
 
-router.param('lexerid', function (req, res, next, id) {
-    console.log('CALLED ONLY ONCE')
-    next()
+router.get('/getAutomatons', isAuth, attachCurrentUser, (req, res) => {
+    db.automaton.find({})
+        .then(automatons => {
+            console.log(automatons)
+            res.json(automatons);
+        })
+        .catch(error => {
+            console.log(error)
+            res.json(error);
+        })
 })
 
-router.get('/lexer/:lexerid/', (req, res) => {
-    res.render('lexer');
+
+
+
+router.get('/lexer/:lexerid/', isAuth, attachCurrentUser, (req, res) => {
+    db.project.findById(req.params.lexerid)
+        .then(project => {
+            if (!project) {
+                throw new Error('За вказаним id проект відсутній')
+            }
+            res.render('lexer', { project: project });
+        })
+        .catch(error => {
+            res.send(error.message)
+        })
+})
+
+router.post('/lexer/:lexerid/saveCode', isAuth, attachCurrentUser, (req, res) => {
+    db.project.findById(req.params.lexerid)
+        .then(project => {
+            if (!project) {
+                throw new Error('За вказаним id проект відсутній')
+            }
+            project.code = req.body.code;
+            project.save(err => {
+                if (err) {
+                    res.json({ error: err })
+                }
+                console.log(req.body.source);
+                res.json({ source: req.body.source })
+            })
+        })
+        .catch(error => {
+            res.json(error.message)
+        })
 })
 
 
@@ -92,6 +137,20 @@ router.post('/createUser', isAuth, attachCurrentUser, roleRequired('admin'), (re
             res.json({ error: null, data: newUser });
         })
         .catch(error => {
+            res.json({ error: error, data: null });
+        })
+})
+
+router.post('/createProject', isAuth, attachCurrentUser, (req, res) => {
+    let newProjectData = req.body;
+    newProjectData.author = req.currentUser._id;
+    newProjectData.code = 'hello world';
+    db.project.create(newProjectData)
+        .then(newProject => {
+            res.json({ error: null, data: newProject });
+        })
+        .catch(error => {
+            console.log(error);
             res.json({ error: error, data: null });
         })
 })

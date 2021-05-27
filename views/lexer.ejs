@@ -3,26 +3,32 @@
 
 <head>
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
-    <script src="lib/codemirror.js"></script>
-    <script src="lib/mode/javascript.js"></script>
-    <link rel="stylesheet" href="lib/codemirror.css">
-    <link rel="stylesheet" href="lib/idea.css">
-    <link href="./stylesheets/main.css" rel="stylesheet" />
-    <link href="./stylesheets/lexer.css" rel="stylesheet" />
+    <script src="/lib/codemirror.js"></script>
+    <script src="/lib/mode/javascript.js"></script>
+    <link rel="stylesheet" href="/lib/codemirror.css">
+    <link rel="stylesheet" href="/lib/idea.css">
+    <link href="/stylesheets/main.css" rel="stylesheet" />
+    <link href="/stylesheets/lexer.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/87aaf69dbe.js" crossorigin="anonymous"></script>
     <script src="/javascripts/state_diagram.js"></script>
-    <script src="/javascripts/lexer.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="/javascripts/lexer.js"></script>
+    
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="/javascripts/api.js"></script>
     <title>Мій перший лексичний аналізатор</title>
 </head>
-
+<script>
+    window.project = <%- JSON.stringify(project) %>
+</script>
 <body>
     <div id="nav">
-        <span id="save"> Зберегти </span>
+        <span>
+            <%= project.name %>
+        </span>
+        <span id="save" onclick="saveCode()"> Зберегти </span>
         <span id="run" onclick="runCode()"> Виконати </span>
-        <span id="projects"> Проекти </span>
+        <a href="/welcome"><span id="projects"> Проекти </span></a>
     </div>
     <div id="mainContainer">
         <div id="textareaHolder">

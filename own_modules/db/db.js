@@ -54,7 +54,42 @@ module.exports = {
         }
     },
     project: {
-
+        findById: function (id) {
+            console.log(id);
+            return new Promise((resolve, reject) => {
+                Project.findById(id).populate('automaton').exec((err, doc) => {
+                    if (err) {
+                        return reject(err);
+                    }
+                    console.log(doc);
+                    resolve(doc)
+                });
+            })
+        },
+        find: function (filter) {
+            return new Promise((resolve, reject) => {
+                Project.find(filter || {}, ((err, projects) => {
+                    if (err) {
+                        console.log(err);
+                        return reject(err);
+                    }
+                    console.log(projects);
+                    resolve(projects)
+                }))
+            });
+        },
+        create: function (projectData) {
+            return new Promise((resolve, reject) => {
+                const newProject = new Project(projectData);
+                newProject.save((err, doc) => {
+                    if (err) {
+                        reject(err);
+                        return;
+                    }
+                    resolve(doc);
+                })
+            });
+        },
     },
     automaton: {
         create: function (automatonData) {
@@ -68,10 +103,18 @@ module.exports = {
                     resolve(doc);
                 })
             });
-
-
-
         },
+        find: function (filter) {
+            return new Promise((resolve, reject) => {
+                Automaton.find(filter || {}, ((err, automatons) => {
+                    if (err) {
+                        console.log(err);
+                        return reject(err);
+                    }
+                    resolve(automatons)
+                }))
+            });
+        }
     }
 }
 
