@@ -13,41 +13,35 @@
     <script src="/javascripts/state_diagram.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="/javascripts/lexer.js"></script>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="/javascripts/api.js"></script>
-    <title>Мій перший лексичний аналізатор</title>
+    <title><%= project.name %></title>
 </head>
 <script>
     window.project = <%- JSON.stringify(project) %>
 </script>
+
 <body>
-    <div id="nav">
-        <span>
-            <%= project.name %>
-        </span>
-        <span id="save" onclick="saveCode()"> Зберегти </span>
-        <span id="run" onclick="runCode()"> Виконати </span>
-        <a href="/welcome"><span id="projects"> Проекти </span></a>
-    </div>
-    <div id="mainContainer">
+    <div class="pageContainer">
+        <div id="nav">
+            <div id="header">
+                <span>
+                    <%= project.name %>
+                </span>
+            </div>
+            <div class="commands">
+                <button class="blue" id="save" onclick="saveCode()"> Зберегти </button>
+                <button class="blue" id="run" onclick="runCode()"> Виконати </button>
+                <a href="/welcome"><button class="blue" id="projects"> Проекти </button></a>
+            </div>
+        </div>
         <div id="textareaHolder">
             <div>
                 <textarea name="studentCode" id="studentCode" rows=100></textarea>
             </div>
             <div>
                 <textarea name="result" id="result" rows=100></textarea>
-            </div>
-        </div>
-
-        <div id="automaton">
-            <div class="container">
-                <h1>Текстове подання</h1>
-                <span id="automatonView"></span>
-            </div>
-            <div class="container">
-                <h1>Графічна діаграма</h1>
-                <div id="chartContainer"></div>
             </div>
         </div>
         <div id="automatonSwitcher">
@@ -60,6 +54,16 @@
                 <label for="digram"> Діаграма</label>
             </div>
         </div>
+        <div class="container">
+            <h1>Графічна діаграма</h1>
+            <div id="chartContainer"></div>
+        </div>
+        <div class="container">
+            <h1>Текстове подання</h1>
+            <span id="automatonView"></span>
+        </div>
+        
+
     </div>
 </body>
 <script src="https://unpkg.com/gojs/release/go-debug.js"></script>

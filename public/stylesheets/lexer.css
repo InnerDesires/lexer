@@ -10,24 +10,17 @@ body {
 
 #textareaHolder {
     width: 100%;
-    display:flex;
+    display: flex;
     flex-direction: row;
 }
 
-#textareaHolder > div {
+#textareaHolder>div {
     width: 50%;
 }
 
-#textareaHolder {
-    margin: 0px 40px;
-}
-
-#automaton {
-    margin: 20px 40px 5px 40px;
-}
 
 #automatonSwitcher {
-    margin: 10px;
+    border: none;
 }
 
 #automatonView {}
@@ -68,17 +61,83 @@ body {
 }
 
 #nav {
-    box-sizing: border-box;
     width: 100%;
-    padding: 15px 40px;
     display: flex;
+    flex-direction: column;
     justify-content: flex-start;
-    font-weight: 800;
-    box-shadow: 4px 0px 8px 0px rgba(34, 60, 80, 0.2);
-    margin-bottom: 5px;
+    border: none;
+}
+
+.pageContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background: rgb(255, 255, 255, 0.75);
+    border: 1px solid rgb(212, 212, 212);
+    background-size: cover;
+    border-radius: 20px;
+    padding: 50px;
+    margin: 50px 150px 50px 150px;
+}
+
+body {
+    background: linear-gradient( 41deg, rgba(168, 235, 253, 0.395) 52%, rgba(255, 255, 255, 1) 100%);
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    display: flex;
 }
 
 #nav>* {
     margin: 0px 10px 0px 0px;
     cursor: pointer;
+}
+
+div.pageContainer > * {
+    margin-bottom: 20px;
+    border: 1px solid rgb(212, 212, 212);
+    border-radius: 10px;
+}
+
+div#header {
+    font-size: 2em;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+.cm-s-idea {
+    border-radius: 10px;
+}
+
+button {
+    font-weight: 800;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.541);
+    border-radius: 5px;
+    border: 2px solid black;
+    font-weight: 500;
+    cursor: pointer;
+}   
+
+button.green:hover {
+    background-color: rgb(221, 255, 234);
+}
+
+button.green {
+    border-color: rgb(186, 253, 212);
+}
+
+button.red:hover {
+    background-color: rgb(252, 218, 218);
+}
+
+button.red {
+    border-color: rgb(255, 172, 172);
+}
+
+button.blue:hover {
+    background-color: rgb(208, 230, 255);
+}
+
+button.blue {
+    border-color: rgb(158, 203, 255);
 }

@@ -41,17 +41,26 @@ router.post('/login', (req, res) => {
 })
 
 router.get('/welcome', isAuth, attachCurrentUser, (req, res) => {
-    db.project.find({ author: req.currentUser._id })
-        .then(projects => {
-            let data = {
-                userData: { name: req.currentUser ? req.currentUser.name : "test" },
-                admin: req.currentUser ? (req.currentUser.role === 'admin' ? true : false) : false,
-                projects: projects
-            }
-            res.render('welcome', data);
-        })
+    db.project.find(req.currentUser.role === 'admin' ? { author: req.currentUser._id } : {})
+    .then(projects => {
+        db.automaton.find()
+            .then(automatons => {
+                db.user.find({})
+                    .then(users => {
+                        let data = {
+                            userData: { name: req.currentUser ? req.currentUser.name : "test" },
+                            admin: req.currentUser ? (req.currentUser.role === 'admin' ? true : false) : false,
+                            projects: projects,
+                            automatons: automatons,
+                            users: users
+                        }
+                        res.render('welcome', data);
+                    })
 
+                
+            })
 
+    })
 })
 
 router.get('/users', isAuth, attachCurrentUser, roleRequired('admin'), (req, res) => {

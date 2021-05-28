@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     const defaultCode = `function getNextState(currentState, symbol){\n    DFA = {\n            "state1": {\n            "a": "state1",\n            "b": "state2",\n            "c": "state3"\n        },\n        "state2": {\n            "a": "state3"\n        }, \n        "state3": {\n            "a": "state3"\n        }\n    }\n    return DFA[currentState][symbol]\n}\n\ngetNextState("state1", "d")`;
 
-    myCodeMirror.setValue(window.project.code);
+    myCodeMirror.setValue(defaultCode);// window.project.code);
     myCodeMirror.setSize('100%', '50vh')
     resultCodeMirror = CodeMirror.fromTextArea(document.getElementById('result'), {
         mode: 'javascript',
@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     resultCodeMirror.setSize('100%', '50vh')
     let automatonStrParagraph = document.getElementById('automatonView');
-    automatonStrParagraph.innerText = window.project.automaton.textForm;
+    automatonStrParagraph.innerText = Automaton.string//window.project.automaton.textForm;
 
     init(chartData);
 
